@@ -63,32 +63,14 @@ public class ConsumeThePoint : MonoBehaviour
             }else {
                 tailmover.followObj = GameObject.Find("Tail" + Convert.ToString(tailCounter-1));
             }*/
-            if(tailCounter == 1) {
-                switch (direction)
-                {
-                    //spawn tail on opposite direction
-                    case "up":
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.down * Time.deltaTime * space);
-                    break;
-                    case "down":
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.up * Time.deltaTime * space);
-                    break;
-                    case "left":
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.right * Time.deltaTime * space);
-                    break;
-                    case "right":
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.left * Time.deltaTime * space);
-                    break;
-                } 
-                } else {
+
+            // HAS TAIL
+            if(tailCounter >= 1) {
                     switch (direction) {
                         case "up":
                             tail.transform.position = this.transform.position;
                             tail.transform.Translate(Vector2.down * Time.deltaTime * space * tailCounter);
+                            Debug.Log(Vector2.down + "- vector2 " + Time.deltaTime + "- tdt " + space + "- space " + tailCounter + " -tailcounter");
                         break;
                         case "down":
                             tail.transform.position = this.transform.position;
@@ -105,7 +87,7 @@ public class ConsumeThePoint : MonoBehaviour
                     } 
                 }
 
-            currentTail = tail;
+            //currentTail = tail;
 
 
             // Assing Parent to new Object
@@ -113,6 +95,8 @@ public class ConsumeThePoint : MonoBehaviour
              // Tail gets created and then gets moved once in the opposite direction of the direction of scuffed man and then follows him at same speed
             //spaceBetweenTails += spaceBetweenTails;
 
+
+            // POINTS
             i += pointAmount;
             score.text = "Score: " + i.ToString();
             
@@ -147,6 +131,9 @@ public class ConsumeThePoint : MonoBehaviour
                     } else if(this.direction == "down") {
                         tail.transform.position = this.transform.position;
                         tail.transform.Translate(Vector2.down * Time.deltaTime * space * i);
+                    }  else if(this.direction == "up") {
+                        tail.transform.position = this.transform.position;
+                        tail.transform.Translate(Vector2.down * Time.deltaTime * space * i);
                     }
                     i--;
                     tail.transform.Translate(Vector2.up * Time.deltaTime * speed);
@@ -171,6 +158,9 @@ public class ConsumeThePoint : MonoBehaviour
                     } else if(this.direction == "up") {
                         tail.transform.position = this.transform.position;
                         tail.transform.Translate(Vector2.up * Time.deltaTime * space * i);
+                    }  else if(this.direction == "down") {
+                        tail.transform.position = this.transform.position;
+                        tail.transform.Translate(Vector2.up * Time.deltaTime * space * i);
                     }
                     i--;
                     tail.transform.Translate(Vector2.down * Time.deltaTime * speed);
@@ -187,12 +177,15 @@ public class ConsumeThePoint : MonoBehaviour
                     if(this.direction == "right") {
                         //Going from right to upwards 
                         tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.right * Time.deltaTime * space * i);
+                        tail.transform.Translate(Vector2.right * Time.deltaTime  * space * i);
                         //tail.transform.position(Vector2.up * Time.deltaTime * speed);
                     } else if(this.direction == "up") {
                         tail.transform.position = this.transform.position;
                         tail.transform.Translate(Vector2.right * Time.deltaTime * space * i);
                     } else if(this.direction == "down") {
+                        tail.transform.position = this.transform.position;
+                        tail.transform.Translate(Vector2.right * Time.deltaTime * space * i);
+                    } else if(this.direction == "left") {
                         tail.transform.position = this.transform.position;
                         tail.transform.Translate(Vector2.right * Time.deltaTime * space * i);
                     }
@@ -217,6 +210,9 @@ public class ConsumeThePoint : MonoBehaviour
                         tail.transform.position = this.transform.position;
                         tail.transform.Translate(Vector2.left * Time.deltaTime * space * i);
                     } else if(this.direction == "down") {
+                        tail.transform.position = this.transform.position;
+                        tail.transform.Translate(Vector2.left * Time.deltaTime * space * i);
+                    }  else if(this.direction == "right") {
                         tail.transform.position = this.transform.position;
                         tail.transform.Translate(Vector2.left * Time.deltaTime * space * i);
                     }
