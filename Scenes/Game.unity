@@ -9590,7 +9590,7 @@ PrefabInstance:
       objectReference: {fileID: 1094922304}
     - target: {fileID: 1337376236691903507, guid: b8e4b35522e509d44ad429158b0c249a, type: 3}
       propertyPath: space
-      value: 60
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1337376236691903507, guid: b8e4b35522e509d44ad429158b0c249a, type: 3}
       propertyPath: speed

@@ -10,7 +10,7 @@ public class OnTouchedByEnemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Enemy") && canKillYou == true) {
             Debug.Log("TOUCH");
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("Lost");
         }
     }
 }

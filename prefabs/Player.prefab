@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 1337376236691903507}
   - component: {fileID: 1337376236691903510}
   - component: {fileID: 4694577942022490966}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: ScuffedMan
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  tailSpeed: 1
 --- !u!114 &1337376236691903507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,8 +184,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abfca389381bebe40a4f6e97ba1c8368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
   score: {fileID: 0}
+  player: {fileID: 0}
+  space: 0.1
   pointAmount: 10
+  pointArray: {fileID: 0}
+  distance: 5
+  positionArray: []
 --- !u!50 &1337376236691903510
 Rigidbody2D:
   serializedVersion: 4

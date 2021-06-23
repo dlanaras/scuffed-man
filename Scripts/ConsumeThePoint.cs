@@ -50,7 +50,7 @@ public class ConsumeThePoint : MonoBehaviour
 
 
             tail.AddComponent<SpriteRenderer>();
-            Sprite tailSprite = Resources.Load<Sprite>("Textures/Enemy");
+            Sprite tailSprite = Resources.Load<Sprite>("Textures/ScuffedMan_128_Tail");
             SpriteRenderer tailSpriteR = tail.GetComponent<SpriteRenderer>();
             tailSpriteR.sprite = tailSprite;
 
@@ -119,6 +119,8 @@ public class ConsumeThePoint : MonoBehaviour
     //TODO: if direction changes move tails to opposite direction of scuffed man
 
     private void Update() {
+            //rotation
+            transform.rotation = Quaternion.identity;
             if(Input.GetKey("up")) {
                 this.transform.Translate(Vector2.up * Time.deltaTime * speed);
                 int i = tailCounter;
@@ -230,6 +232,7 @@ public class ConsumeThePoint : MonoBehaviour
 
             if(pointArray.transform.childCount == 0) {
                 Debug.Log("YES");
+                PlayerPrefs.SetInt("Score", i);
                 SceneManager.LoadScene("Won");
             }
     }
