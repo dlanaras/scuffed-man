@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class ConsumeThePoint : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class ConsumeThePoint : MonoBehaviour
     public float space = 5f;
     private int i = 0; // score amount
     public int pointAmount; // Amount of points to get added when consuming a point
-    private int totalPointObjects = 100; // for now defined like this later on probably with a loop
+    [SerializeField] public GameObject pointArray;
+    private int totalPointObjects; // for now defined like this later on probably with a loop
     private int tailCounter = 0;
     public float distance = 5f;
     private string direction = "right";
@@ -30,11 +32,12 @@ public class ConsumeThePoint : MonoBehaviour
     Color seventyToNinety = new Color(0,0,255,255);
     Color ninetyNine = new Color(255,0,0,255);
 
+
     private void OnTriggerEnter2D(Collider2D other) {
         
         if(other.gameObject.CompareTag("Point")) {
             tailCounter++; 
-            Destroy(other.gameObject); // Destroy the Point
+            Destroy(other.gameObject.transform.parent.gameObject); // Destroy the Point
             GameObject tail = new GameObject("Tail" + (Convert.ToString(tailCounter))); // create a new Tail Gameobject
             //tail.transform.position = tail.transform.position * Vector2.right * Input.GetAxis("Horizontal") * Time.deltaTime;
 
@@ -99,6 +102,7 @@ public class ConsumeThePoint : MonoBehaviour
             // POINTS
             i += pointAmount;
             score.text = "Score: " + i.ToString();
+            totalPointObjects = pointArray.transform.childCount;
             
             if(i > totalPointObjects * 0.10 && i < totalPointObjects * 0.40) {
                 score.color = tenToForty;
@@ -136,7 +140,7 @@ public class ConsumeThePoint : MonoBehaviour
                         tail.transform.Translate(Vector2.down * Time.deltaTime * space * i);
                     }
                     i--;
-                    tail.transform.Translate(Vector2.up * Time.deltaTime * speed);
+                    //tail.transform.Translate(Vector2.up * Time.deltaTime * speed);
                 }
                 this.direction = "up";
 
@@ -163,7 +167,7 @@ public class ConsumeThePoint : MonoBehaviour
                         tail.transform.Translate(Vector2.up * Time.deltaTime * space * i);
                     }
                     i--;
-                    tail.transform.Translate(Vector2.down * Time.deltaTime * speed);
+                    //tail.transform.Translate(Vector2.down * Time.deltaTime * speed);
                 }
                 this.direction = "down";
 
@@ -190,7 +194,7 @@ public class ConsumeThePoint : MonoBehaviour
                         tail.transform.Translate(Vector2.right * Time.deltaTime * space * i);
                     }
                     i--;
-                    tail.transform.Translate(Vector2.left * Time.deltaTime * speed);
+                    //tail.transform.Translate(Vector2.left * Time.deltaTime * speed);
                 }
                 this.direction = "left";
 
@@ -217,9 +221,16 @@ public class ConsumeThePoint : MonoBehaviour
                         tail.transform.Translate(Vector2.left * Time.deltaTime * space * i);
                     }
                     i--;
-                    tail.transform.Translate(Vector2.right * Time.deltaTime * speed);
+                    //tail.transform.Translate(Vector2.right * Time.deltaTime * speed);
                 }
                 this.direction = "right";
+            }
+
+            // No More Points
+
+            if(pointArray.transform.childCount == 0) {
+                Debug.Log("YES");
+                SceneManager.LoadScene("Won");
             }
     }
 
