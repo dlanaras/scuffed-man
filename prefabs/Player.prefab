@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 1337376236691903506}
   - component: {fileID: 1337376236691903469}
   - component: {fileID: 1337376236691903505}
-  - component: {fileID: 1337376236691903504}
   - component: {fileID: 1337376236691903507}
   - component: {fileID: 1337376236691903510}
   - component: {fileID: 4694577942022490966}
@@ -158,20 +157,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canKillYou: 1
---- !u!114 &1337376236691903504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337376236691903471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd572234e07855141826f28cf0030f6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  tailSpeed: 1
 --- !u!114 &1337376236691903507
 MonoBehaviour:
   m_ObjectHideFlags: 0
