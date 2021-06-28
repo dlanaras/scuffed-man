@@ -6,8 +6,9 @@ using TMPro;
 public class CurrentScore : MonoBehaviour
 {
     public TMP_Text scoreText;
-    void Start()
+    void Awake()
     {
-        scoreText.text = scoreText.text + " " + PlayerPrefs.GetInt("Score").ToString();
+        Debug.Log(PlayerPrefs.GetInt("Score").ToString());
+        scoreText.text = scoreText.text.Replace(" 0", " " + PlayerPrefs.GetInt("Score").ToString());
     }
 }

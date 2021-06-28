@@ -104,13 +104,13 @@ public class ConsumeThePoint : MonoBehaviour
             score.text = "Score: " + i.ToString();
             totalPointObjects = pointArray.transform.childCount;
             
-            if(i > totalPointObjects * 0.10 && i < totalPointObjects * 0.40) {
+            if(i > (totalPointObjects * pointAmount) * 0.10 && i < (totalPointObjects * pointAmount) * 0.40) {
                 score.color = tenToForty;
-            }else if(i > totalPointObjects * 0.40 && i < totalPointObjects * 0.70) {
+            }else if(i > (totalPointObjects * pointAmount) * 0.40 && i < (totalPointObjects * pointAmount) * 0.70) {
                 score.color = fortyToSeventy;
-            }else if(i > totalPointObjects * 0.70 && i < totalPointObjects * 0.99) {
+            }else if(i > (totalPointObjects * pointAmount) * 0.70 && i < (totalPointObjects * pointAmount) * 0.99) {
                 score.color = seventyToNinety;
-            }else if(i >= totalPointObjects * 0.99) {
+            }else if(i >= (totalPointObjects * pointAmount) * 0.99) {
                 score.color = ninetyNine;
             }
         }
@@ -229,10 +229,9 @@ public class ConsumeThePoint : MonoBehaviour
             }
 
             // No More Points
-
+                PlayerPrefs.SetInt("Score", i);
             if(pointArray.transform.childCount == 0) {
                 Debug.Log("YES");
-                PlayerPrefs.SetInt("Score", i);
                 SceneManager.LoadScene("Won");
             }
     }
