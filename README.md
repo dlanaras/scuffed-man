@@ -1,8 +1,7 @@
 # Scuffed-Man
 
 ## Introduction
-### This is the github repository of my new Unity game for a work project called Scuffed-Man. In a nutshell this is Pac-Man
-### Snake combined into one game (ignoring the custom textures + the weird tail follow effect of Scuffed-Man)
+### This is the github repository of my new Unity game for a work project called Scuffed-Man. In a nutshell this is Pac-Man Snake combined into one game (ignoring the custom textures + the weird tail follow effect of Scuffed-Man)
 
 ## Controls 
 ### The four arrow keys < (Left) > (right) ^ (upwards) v (downwards)
