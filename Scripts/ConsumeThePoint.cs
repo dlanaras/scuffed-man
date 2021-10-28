@@ -29,14 +29,16 @@ public class ConsumeThePoint : MonoBehaviour
     // Init for different colors to be used as Text color
     Color tenToForty = new Color(0, 255, 0, 255);
     Color fortyToSeventy = new Color(0, 123, 123, 255);
-    Color seventyToNinety = new Color(0,0,255,255);
-    Color ninetyNine = new Color(255,0,0,255);
+    Color seventyToNinety = new Color(0, 0, 255, 255);
+    Color ninetyNine = new Color(255, 0, 0, 255);
 
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        
-        if(other.gameObject.CompareTag("Point")) {
-            tailCounter++; 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.gameObject.CompareTag("Point"))
+        {
+            tailCounter++;
             Destroy(other.gameObject.transform.parent.gameObject); // Destroy the Point
             GameObject tail = new GameObject("Tail" + (Convert.ToString(tailCounter))); // create a new Tail Gameobject
             //tail.transform.position = tail.transform.position * Vector2.right * Input.GetAxis("Horizontal") * Time.deltaTime;
@@ -57,183 +59,109 @@ public class ConsumeThePoint : MonoBehaviour
             tail.AddComponent<OnTouchedByEnemy>();
             tail.tag = "Tail";
 
-            //tail.transform.Translate(Vector2.left * Time.deltaTime * distance);
-
-            /*tail.AddComponent<TailMovement>();
-            TailMovement tailmover = tail.GetComponent<TailMovement>();
-            if(tailCounter == 1) {
-                tailmover.followObj = player;
-            }else {
-                tailmover.followObj = GameObject.Find("Tail" + Convert.ToString(tailCounter-1));
-            }*/
-
             // HAS TAIL
-            if(tailCounter >= 1) {
-                    switch (direction) {
-                        case "up":
-                            tail.transform.position = this.transform.position;
-                            tail.transform.Translate(Vector2.down * Time.deltaTime * space * tailCounter);
-                            Debug.Log(Vector2.down + "- vector2 " + Time.deltaTime + "- tdt " + space + "- space " + tailCounter + " -tailcounter");
+            if (tailCounter >= 1)
+            {
+                switch (direction)
+                {
+                    case "up":
+                        tail.transform.position.Set(this.transform.position[0], this.transform.position[1] - (space + tailCounter), 0);
                         break;
-                        case "down":
-                            tail.transform.position = this.transform.position;
-                            tail.transform.Translate(Vector2.up * Time.deltaTime * space * tailCounter);
+                    case "down":
+                        tail.transform.position.Set(this.transform.position[0], this.transform.position[1] + (space + tailCounter), 0);
                         break;
-                        case "left":
-                            tail.transform.position = this.transform.position;
-                            tail.transform.Translate(Vector2.right * Time.deltaTime * space * tailCounter);
+                    case "left":
+                        tail.transform.position.Set(this.transform.position[0] + (space + tailCounter), this.transform.position[1], 0);
                         break;
-                        case "right":
-                            tail.transform.position = this.transform.position;
-                            tail.transform.Translate(Vector2.left * Time.deltaTime * space * tailCounter);
+                    case "right":
+                        tail.transform.position.Set(this.transform.position[0] - (space + tailCounter), this.transform.position[1], 0);
                         break;
-                    } 
                 }
-
-            //currentTail = tail;
-
-
-            // Assing Parent to new Object
-            
-             // Tail gets created and then gets moved once in the opposite direction of the direction of scuffed man and then follows him at same speed
-            //spaceBetweenTails += spaceBetweenTails;
+            }
 
 
             // POINTS
             i += pointAmount;
             score.text = "Score: " + i.ToString();
             totalPointObjects = pointArray.transform.childCount;
-            
-            if(i > (totalPointObjects * pointAmount) * 0.10 && i < (totalPointObjects * pointAmount) * 0.40) {
+
+            if (i > (totalPointObjects * pointAmount) * 0.10 && i < (totalPointObjects * pointAmount) * 0.40)
+            {
                 score.color = tenToForty;
-            }else if(i > (totalPointObjects * pointAmount) * 0.40 && i < (totalPointObjects * pointAmount) * 0.70) {
+            }
+            else if (i > (totalPointObjects * pointAmount) * 0.40 && i < (totalPointObjects * pointAmount) * 0.70)
+            {
                 score.color = fortyToSeventy;
-            }else if(i > (totalPointObjects * pointAmount) * 0.70 && i < (totalPointObjects * pointAmount) * 0.99) {
+            }
+            else if (i > (totalPointObjects * pointAmount) * 0.70 && i < (totalPointObjects * pointAmount) * 0.99)
+            {
                 score.color = seventyToNinety;
-            }else if(i >= (totalPointObjects * pointAmount) * 0.99) {
+            }
+            else if (i >= (totalPointObjects * pointAmount) * 0.99)
+            {
                 score.color = ninetyNine;
             }
         }
     }
 
-    //TODO: if direction changes move tails to opposite direction of scuffed man
-
-    private void Update() {
-            //rotation
-            transform.rotation = Quaternion.identity;
-            if(Input.GetKey("up")) {
-                this.transform.Translate(Vector2.up * Time.deltaTime * speed);
-                int i = tailCounter;
-                foreach (GameObject tail in GameObject.FindGameObjectsWithTag("Tail"))
+    private void MakeTailsFollowHead(Vector2 direction)
+    {
+        if (tailCounter > 0)
+        {
+            int i = tailCounter;
+            Vector3 previousTailPos = new Vector3();
+            foreach (GameObject tail in GameObject.FindGameObjectsWithTag("Tail"))
+            {
+                if (i == tailCounter)
                 {
-                    if(this.direction == "right") {
-                        //Going from right to upwards 
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.down * Time.deltaTime * space * i);
-                        //tail.transform.position(Vector2.up * Time.deltaTime * speed);
-                    } else if(this.direction == "left") {
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.down * Time.deltaTime * space * i);
-                    } else if(this.direction == "down") {
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.down * Time.deltaTime * space * i);
-                    }  else if(this.direction == "up") {
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.down * Time.deltaTime * space * i);
-                    }
-                    i--;
-                    //tail.transform.Translate(Vector2.up * Time.deltaTime * speed);
+                    previousTailPos = tail.transform.position; //save tail pos
+                    tail.transform.position = this.transform.position; //tail gets moved to position of head
+                    this.transform.Translate(direction * Time.deltaTime * speed); //head moves
+
                 }
-                this.direction = "up";
-
-
-
-            } else if(Input.GetKey("down")) {
-                this.transform.Translate(Vector2.down * Time.deltaTime * speed);
-                int i = tailCounter;
-                foreach (GameObject tail in GameObject.FindGameObjectsWithTag("Tail"))
+                else
                 {
-                    if(this.direction == "right") {
-                        //Going from right to upwards 
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.up * Time.deltaTime * space * i);
-                        //tail.transform.position(Vector2.up * Time.deltaTime * speed);
-                    } else if(this.direction == "left") {
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.up * Time.deltaTime * space * i);
-                    } else if(this.direction == "up") {
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.up * Time.deltaTime * space * i);
-                    }  else if(this.direction == "down") {
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.up * Time.deltaTime * space * i);
-                    }
-                    i--;
-                    //tail.transform.Translate(Vector2.down * Time.deltaTime * speed);
+                    Vector3 tempPos = tail.transform.position; //save tail pos
+                    tail.transform.position = previousTailPos; //move tail to last tail location
+                    previousTailPos = tempPos; //set previouspos to actually previouspos (tempPos)
                 }
-                this.direction = "down";
 
-
-
-            } else if(Input.GetKey("left")) {
-                this.transform.Translate(Vector2.left * Time.deltaTime * speed);
-                int i = tailCounter;
-                foreach (GameObject tail in GameObject.FindGameObjectsWithTag("Tail"))
-                {
-                    if(this.direction == "right") {
-                        //Going from right to upwards 
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.right * Time.deltaTime  * space * i);
-                        //tail.transform.position(Vector2.up * Time.deltaTime * speed);
-                    } else if(this.direction == "up") {
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.right * Time.deltaTime * space * i);
-                    } else if(this.direction == "down") {
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.right * Time.deltaTime * space * i);
-                    } else if(this.direction == "left") {
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.right * Time.deltaTime * space * i);
-                    }
-                    i--;
-                    //tail.transform.Translate(Vector2.left * Time.deltaTime * speed);
-                }
-                this.direction = "left";
-
-
-
-            } else if(Input.GetKey("right")) {
-                this.transform.Translate(Vector2.right * Time.deltaTime * speed);
-                int i = tailCounter;
-                foreach (GameObject tail in GameObject.FindGameObjectsWithTag("Tail"))
-                {
-                    if(this.direction == "left") {
-                        //Going from right to upwards 
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.left * Time.deltaTime * space * i);
-                        //tail.transform.position(Vector2.up * Time.deltaTime * speed);
-                    } else if(this.direction == "up") {
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.left * Time.deltaTime * space * i);
-                    } else if(this.direction == "down") {
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.left * Time.deltaTime * space * i);
-                    }  else if(this.direction == "right") {
-                        tail.transform.position = this.transform.position;
-                        tail.transform.Translate(Vector2.left * Time.deltaTime * space * i);
-                    }
-                    i--;
-                    //tail.transform.Translate(Vector2.right * Time.deltaTime * speed);
-                }
-                this.direction = "right";
+                i--;
             }
+        }
+        else
+        {
+            this.transform.Translate(direction * Time.deltaTime * speed);
+        }
+    }
+    private void Update()
+    {
+        //rotation
+        transform.rotation = Quaternion.identity;
+        if (Input.GetKey("up"))
+        {
+            this.MakeTailsFollowHead(Vector2.up);
+        }
+        else if (Input.GetKey("down"))
+        {
+            this.MakeTailsFollowHead(Vector2.down);
+        }
+        else if (Input.GetKey("left"))
+        {
+            this.MakeTailsFollowHead(Vector2.left);
+        }
+        else if (Input.GetKey("right"))
+        {
+            this.MakeTailsFollowHead(Vector2.right);
+        }
 
-            // No More Points
-                PlayerPrefs.SetInt("Score", i);
-            if(pointArray.transform.childCount == 0) {
-                Debug.Log("YES");
-                SceneManager.LoadScene("Won");
-            }
+        // No More Points
+        PlayerPrefs.SetInt("Score", i);
+        if (pointArray.transform.childCount == 0)
+        {
+            Debug.Log("YES");
+            SceneManager.LoadScene("Won");
+        }
     }
 
 }
