@@ -168,16 +168,18 @@ public class ConsumeThePoint : MonoBehaviour
 
         // Add needed tail components like collider and scripts
         tail.AddComponent<BoxCollider2D>();
-        BoxCollider2D tailCollider = tail.GetComponent<BoxCollider2D>();
-        tailCollider.isTrigger = true;
+
+        tail.AddComponent<Rigidbody2D>();
+        Rigidbody2D rbody2D = tail.GetComponent<Rigidbody2D>();
+        rbody2D.bodyType = RigidbodyType2D.Kinematic;
+        rbody2D.simulated = false;
 
         tail.AddComponent<SpriteRenderer>();
         Sprite tailSprite = Resources.Load<Sprite>("Textures/ScuffedMan_128_Tail");
         SpriteRenderer tailSpriteR = tail.GetComponent<SpriteRenderer>();
         tailSpriteR.sprite = tailSprite;
         tailSpriteR.sortingOrder = tails.Count;
-
-        tail.AddComponent<OnTouchedByEnemy>();
+        
         tail.tag = "Tail";
 
     }
