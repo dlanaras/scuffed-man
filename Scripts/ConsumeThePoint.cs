@@ -16,10 +16,9 @@ public class ConsumeThePoint : MonoBehaviour
     private int amountOfPointObjects;
     public int pointValue;
     public GameObject pointGameObjects;
-    private int tailCounter = 0;
-    private Vector2 previousTailPos = new Vector2();
     private Vector2 direction;
-    private List<GameObject> gameObjects = new List<GameObject>();
+    private Vector2 previousPos;
+    private List<GameObject> tails = new List<GameObject>();
     Color tenToForty = new Color(0, 255, 0, 255);
     Color fortyToSeventy = new Color(0, 123, 123, 255);
     Color seventyToNinety = new Color(0, 0, 255, 255);
@@ -28,7 +27,6 @@ public class ConsumeThePoint : MonoBehaviour
     private void Awake()
     {
         this.amountOfPointObjects = pointGameObjects.transform.childCount;
-        gameObjects.Add(this.gameObject);
     }
 
 
@@ -66,6 +64,7 @@ public class ConsumeThePoint : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D otherCollider2D)
     {
 
+
         if (otherCollider2D.gameObject.CompareTag("Point"))
         {
             Destroy(otherCollider2D.gameObject.transform.parent.gameObject); // Destroy consumed point
@@ -101,63 +100,45 @@ public class ConsumeThePoint : MonoBehaviour
         }
     }
 
+
     private void MakeTailsFollowHeadAndMove()
     {
         //rotation
         //transform.rotation = Quaternion.identity;
 
-        if (tailCounter > 0)
+        if (tails.Count > 0)
         {
-            int i = tailCounter;
+            previousPos = this.transform.position;
 
+
+            previousPos = new Vector2(this.transform.position[0], this.transform.position[1]);// - spaceBetweenTails);
             this.transform.Translate(this.direction * Time.deltaTime * speed);
 
+            Vector2 tmp = Vector2.zero;
 
-            if (i == tailCounter)
+            for (int i = 0; i < tails.Count; i++)
             {
-                previousTailPos = gameObject.transform.position;
-                gameObject.transform.Translate(direction * Time.deltaTime * speed);
+                tmp = tails[i].transform.position;
+                tails[i].transform.position = previousPos;
+                previousPos = tmp;
+                previousPos = new Vector2(tmp[0], tmp[1]);// - spaceBetweenTails);
             }
-            else
-            {
-                Vector2 tempPos = gameObject.transform.position;
-                gameObject.transform.position = previousTailPos;
-                previousTailPos = tempPos;
-            }
-
-
-
-            /*
-                            previousTailPos = tail.transform.position; //save tail pos
-                            tail.transform.position.Set(direction[0] * Time.deltaTime * -1 * spaceBetweenTails, this.transform.position[1], 0); // = this.transform.position; //tail gets moved to position of head
-                            this.transform.Translate(this.direction * Time.deltaTime * speed); //head moves
-                            tail.transform.Translate(direction * -1 * spaceBetweenTails * Time.deltaTime);
-                            //tail.transform.Translate((direction * -1 * spaceBetweenTails) * tailCounter);
-
-
-                            Vector2 tempPos = tail.transform.position; //save tail pos
-                            tail.transform.position = previousTailPos; //move tail to last tail location
-                            previousTailPos = tempPos; //set previouspos to actually previouspos (tempPos)
-
-            */
-            i--;
-
-
         }
         else
         {
             this.transform.Translate(this.direction * Time.deltaTime * speed);
         }
+
     }
+
 
     private void CreateTail()
     {
-        tailCounter++;
-
-        GameObject tail = new GameObject("Tail" + (Convert.ToString(tailCounter)));
+        GameObject tail = new GameObject("Tail" + (Convert.ToString(tails.Count + 1)));
+        tails.Add(tail);
         //place new tail on opposite direction of player with distance based of spaceBetweenTails and tailCounter
         tail.transform.position = this.transform.position;
-        tail.transform.Translate((direction * -1 * spaceBetweenTails) * tailCounter);
+        tail.transform.Translate((direction * -1 * spaceBetweenTails) * tails.Count);
 
         // Add needed tail components like collider and scripts
         tail.AddComponent<BoxCollider2D>();
@@ -168,7 +149,7 @@ public class ConsumeThePoint : MonoBehaviour
         Sprite tailSprite = Resources.Load<Sprite>("Textures/ScuffedMan_128_Tail");
         SpriteRenderer tailSpriteR = tail.GetComponent<SpriteRenderer>();
         tailSpriteR.sprite = tailSprite;
-        tailSpriteR.sortingOrder = tailCounter;
+        tailSpriteR.sortingOrder = tails.Count;
 
         tail.AddComponent<OnTouchedByEnemy>();
         tail.tag = "Tail";
