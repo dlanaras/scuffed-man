@@ -7,7 +7,7 @@
 ### The four arrow keys < (Left) > (right) ^ (upwards) v (downwards)
 
 ## How to install
-### Install the 7zip file of the game from [here](https://github.com/dlanaras/scuffed-man/blob/newMain/Zips/devVersion/devZips/Scuffed-Man_x86_v1.0.7z) by pressing the download button
+### Install the 7zip file of the game from [here](https://github.com/dlanaras/scuffed-man/releases) by pressing the download button
 ### after that use 7zip to extract the files to the desired path.
     
 ### To download 7zip for windows use this link https://www.7-zip.org/
