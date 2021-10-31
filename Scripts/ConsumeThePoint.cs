@@ -112,9 +112,6 @@ public class ConsumeThePoint : MonoBehaviour
 
     private void MakeTailsFollowHeadAndMove()
     {
-        //rotation
-        //transform.rotation = Quaternion.identity;
-
         if (tails.Count > 0)
         {
             previousPos = this.transform.position;
@@ -131,6 +128,7 @@ public class ConsumeThePoint : MonoBehaviour
                 tails[i].transform.position = previousPos;
                 previousPos = tmp;
                 previousPos = new Vector2(tmp[0], tmp[1]);
+                this.RotateTailAccordingToDirection(tails[i]);
             }
         }
         else
@@ -138,6 +136,26 @@ public class ConsumeThePoint : MonoBehaviour
             GetComponent<Rigidbody2D>().AddForce(this.direction * Time.deltaTime * speed, ForceMode2D.Impulse);
         }
 
+    }
+
+    private void RotateTailAccordingToDirection(GameObject tail)
+    {
+        if (this.direction == Vector2.up)
+        {
+            tail.transform.rotation = new Quaternion(90, -90, 0, 1);
+        }
+        else if (this.direction == Vector2.down)
+        {
+            tail.transform.rotation = new Quaternion(90, 90, 0, 1);
+        }
+        else if (this.direction == Vector2.left)
+        {
+            tail.transform.rotation = Quaternion.identity;
+        }
+        else if (this.direction == Vector2.right)
+        {
+            tail.transform.rotation = new Quaternion(0, 90, 0, 1);
+        }
     }
 
 
