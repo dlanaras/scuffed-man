@@ -4472,7 +4472,9 @@ GameObject:
   - component: {fileID: 1849215572}
   - component: {fileID: 1849215574}
   - component: {fileID: 1849215573}
+  - component: {fileID: 1849215576}
   - component: {fileID: 1849215575}
+  - component: {fileID: 1849215577}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -9171,7 +9173,63 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!19719996 &1849215575
+--- !u!50 &1849215575
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849215571}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!68 &1849215576
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849215571}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 3.7398329, y: 21.820831}
+  - {x: 3.7339203, y: 27.077066}
+  - {x: 18.019402, y: 27.090178}
+  - {x: 18.02317, y: 15.755909}
+  - {x: 13.014813, y: 15.731024}
+  - {x: 13.024099, y: 5.77572}
+  - {x: 13.02875, y: 3.9944932}
+  - {x: 13.037898, y: 2.000925}
+  - {x: 16.98767, y: 1.9695193}
+  - {x: 16.990047, y: -12.297433}
+  - {x: -10.269309, y: -12.235937}
+  - {x: -10.203597, y: 2.0802364}
+  - {x: -5.3084316, y: 2.1035895}
+  - {x: -5.261651, y: 14.75076}
+  - {x: -10.310864, y: 14.748431}
+  - {x: -10.250956, y: 27.041992}
+  - {x: 3.0197434, y: 27.07842}
+  - {x: 3.0270975, y: 21.811762}
+  - {x: 3.7372606, y: 21.823492}
+--- !u!19719996 &1849215577
 TilemapCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9812,11 +9870,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2944415513830312275, guid: 7e701aa27c4fa1f62805b609ff45fba4,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944415513830312275, guid: 7e701aa27c4fa1f62805b609ff45fba4,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944415513830312275, guid: 7e701aa27c4fa1f62805b609ff45fba4,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944415513830312275, guid: 7e701aa27c4fa1f62805b609ff45fba4,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944415513830312275, guid: 7e701aa27c4fa1f62805b609ff45fba4,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944415513830312275, guid: 7e701aa27c4fa1f62805b609ff45fba4,
+        type: 3}
+      propertyPath: m_SleepingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944415513830312278, guid: 7e701aa27c4fa1f62805b609ff45fba4,
+        type: 3}
+      propertyPath: speed
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 2944415513830312278, guid: 7e701aa27c4fa1f62805b609ff45fba4,
         type: 3}
       propertyPath: scoreTMP
       value: 
       objectReference: {fileID: 1094922304}
+    - target: {fileID: 2944415513830312278, guid: 7e701aa27c4fa1f62805b609ff45fba4,
+        type: 3}
+      propertyPath: pointValue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2944415513830312278, guid: 7e701aa27c4fa1f62805b609ff45fba4,
         type: 3}
       propertyPath: pointGameObjects

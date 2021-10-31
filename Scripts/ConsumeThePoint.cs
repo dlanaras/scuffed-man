@@ -41,16 +41,19 @@ public class ConsumeThePoint : MonoBehaviour
         {
             this.direction = Vector2.down;
             this.MakeTailsFollowHeadAndMove();
+            
         }
         else if (Input.GetKey("left"))
         {
             this.direction = Vector2.left;
             this.MakeTailsFollowHeadAndMove();
+            
         }
         else if (Input.GetKey("right"))
         {
             this.direction = Vector2.right;
             this.MakeTailsFollowHeadAndMove();
+            
         }
 
         if (pointGameObjects.transform.childCount == 0)
@@ -111,8 +114,8 @@ public class ConsumeThePoint : MonoBehaviour
             previousPos = this.transform.position;
 
 
-            previousPos = new Vector2(this.transform.position[0], this.transform.position[1]);// - spaceBetweenTails);
-            this.transform.Translate(this.direction * Time.deltaTime * speed);
+            previousPos = new Vector2(this.transform.position[0], this.transform.position[1]);
+            GetComponent<Rigidbody2D>().AddForce(this.direction * Time.deltaTime * speed, ForceMode2D.Impulse);
 
             Vector2 tmp = Vector2.zero;
 
@@ -121,13 +124,12 @@ public class ConsumeThePoint : MonoBehaviour
                 tmp = tails[i].transform.position;
                 tails[i].transform.position = previousPos;
                 previousPos = tmp;
-                previousPos = new Vector2(tmp[0], tmp[1]);// - spaceBetweenTails);
-                Debug.Log(Time.timeScale);
+                previousPos = new Vector2(tmp[0], tmp[1]);
             }
         }
         else
         {
-            this.transform.Translate(this.direction * Time.deltaTime * speed);
+            GetComponent<Rigidbody2D>().AddForce(this.direction * Time.deltaTime * speed, ForceMode2D.Impulse);
         }
 
     }
