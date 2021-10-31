@@ -11,7 +11,7 @@ public class ConsumeThePoint : MonoBehaviour
 
     public TMP_Text scoreTMP;
     private int scoreAmount = 0;
-    public float spaceBetweenTails = 0.1f;
+    private float spaceBetweenTails = 0.1f;
     public int speed = 0;
     private int amountOfPointObjects;
     public int pointValue;
@@ -122,6 +122,7 @@ public class ConsumeThePoint : MonoBehaviour
                 tails[i].transform.position = previousPos;
                 previousPos = tmp;
                 previousPos = new Vector2(tmp[0], tmp[1]);// - spaceBetweenTails);
+                Debug.Log(Time.timeScale);
             }
         }
         else
