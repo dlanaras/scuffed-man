@@ -34,26 +34,32 @@ public class ConsumeThePoint : MonoBehaviour
     {
         if (Input.GetKey("up"))
         {
+            this.transform.rotation = new Quaternion(90, -90, 0, 1);
             this.direction = Vector2.up;
             this.MakeTailsFollowHeadAndMove();
+
         }
         else if (Input.GetKey("down"))
         {
+            this.transform.rotation = new Quaternion(90, 90, 0, 1);
             this.direction = Vector2.down;
             this.MakeTailsFollowHeadAndMove();
-            
+
         }
         else if (Input.GetKey("left"))
         {
+            this.transform.rotation = Quaternion.identity;
             this.direction = Vector2.left;
             this.MakeTailsFollowHeadAndMove();
-            
+
         }
         else if (Input.GetKey("right"))
         {
+            this.transform.rotation = new Quaternion(0, 90, 0, 1);
+
             this.direction = Vector2.right;
             this.MakeTailsFollowHeadAndMove();
-            
+
         }
 
         if (pointGameObjects.transform.childCount == 0)
