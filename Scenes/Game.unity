@@ -188,6 +188,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3457335300582092889, guid: 6f3934669a5cd0b419b1a9814fac7c71,
+        type: 3}
+      propertyPath: RandomGenerationDelayInSec
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8974028061051504430, guid: 6f3934669a5cd0b419b1a9814fac7c71,
         type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
@@ -2561,6 +2566,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3457335300582092889, guid: 6f3934669a5cd0b419b1a9814fac7c71,
+        type: 3}
+      propertyPath: RandomGenerationDelayInSec
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8974028061051504430, guid: 6f3934669a5cd0b419b1a9814fac7c71,
         type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
@@ -3918,7 +3928,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1407873238
 Transform:
   m_ObjectHideFlags: 0
@@ -10053,6 +10063,11 @@ PrefabInstance:
         type: 3}
       propertyPath: speed
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3457335300582092889, guid: 6f3934669a5cd0b419b1a9814fac7c71,
+        type: 3}
+      propertyPath: RandomGenerationDelayInSec
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3457335300582092892, guid: 6f3934669a5cd0b419b1a9814fac7c71,
         type: 3}

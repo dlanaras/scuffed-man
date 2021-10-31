@@ -11,7 +11,7 @@ public class ConsumeThePoint : MonoBehaviour
 
     public TMP_Text scoreTMP;
     private int scoreAmount = 0;
-    private float spaceBetweenTails = 0.1f;
+    //private float spaceBetweenTails = 0.1f;
     public int speed = 0;
     private int amountOfPointObjects;
     public int pointValue;
@@ -165,7 +165,6 @@ public class ConsumeThePoint : MonoBehaviour
         tails.Add(tail);
         //place new tail on opposite direction of player with distance based of spaceBetweenTails and tailCounter
         tail.transform.position = this.transform.position;
-        tail.transform.Translate((direction * -1 * spaceBetweenTails) * tails.Count);
 
         // Add needed tail components like collider and scripts
         tail.AddComponent<BoxCollider2D>();
