@@ -1175,6 +1175,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Points (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 3421146685012510985, guid: a75a1b6402da5744e92cc1225fda7654,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a75a1b6402da5744e92cc1225fda7654, type: 3}
 --- !u!4 &302093599 stripped
@@ -3321,7 +3326,7 @@ GameObject:
   - component: {fileID: 1110762013}
   m_Layer: 0
   m_Name: PointArray
-  m_TagString: Untagged
+  m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
